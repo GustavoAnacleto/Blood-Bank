@@ -1,4 +1,4 @@
-package com.example.blood.bank;
+package com.example.blood.bank.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
