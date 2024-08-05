@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 @Entity
-@Table(name = "tb_donor")
+@Table(name= "tb_donor")
 public class Donor {
 	
     @Id

@@ -1,6 +1,6 @@
 package com.example.blood.bank.controllers;
 
-import java.util.List;
+import java.util.List;  
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,10 @@ public class DonorController {
     @Autowired
     private DonorService donorService;
     
-    @GetMapping("/count-by-state")
-    public ResponseEntity<Map<String, Long>> countCandidatesByState(@RequestBody List<DonorDTO> donors) {
+    @PostMapping("/count-by-state")
+    public ResponseEntity<Map<String, Long>> candidatesByState(@RequestBody List<DonorDTO> donors) {
         List<DonorDTO> validDonors = donorService.filterValidDonors(donors);
-        Map<String, Long> result = donorService.countCandidatesByState(validDonors);
+        Map<String, Long> result = donorService.candidatesByState(validDonors);
         return ResponseEntity.ok(result);
     }
 
@@ -34,7 +34,8 @@ public class DonorController {
         List<Donor> donors = donorService.getAllDonors();
         return ResponseEntity.ok(donors);
     }
-
+    
+    
     @PostMapping("/average-imc")
     public ResponseEntity<Map<String, Double>> getAverageIMCByAgeRange(@RequestBody List<DonorDTO> donors) {
         List<DonorDTO> validDonors = donorService.filterValidDonors(donors);
@@ -62,4 +63,11 @@ public class DonorController {
         Map<String, Long> possibleDonorsByBloodType = donorService.possibleDonorsByBloodType(validDonors);
         return ResponseEntity.ok(possibleDonorsByBloodType);
     }
+    @PostMapping("/donors")
+    public ResponseEntity<List<Donor>> salvarDonors(@RequestBody List<Donor> donors) {
+        List<Donor> donorsSalvos = donorService.salvarDonors(donors);
+        return ResponseEntity.ok(donorsSalvos);
+    }
+
+
 }

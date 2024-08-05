@@ -13,6 +13,8 @@ import com.example.blood.bank.dto.DonorDTO;
 import com.example.blood.bank.entities.Donor;
 import com.example.blood.bank.repositories.DonorRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class DonorService {
 
@@ -40,7 +42,7 @@ public class DonorService {
         return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
-    public Map<String, Long> countCandidatesByState(List<DonorDTO> donors) {
+    public Map<String, Long> candidatesByState(List<DonorDTO> donors) {
         return donors.stream()
                 .collect(Collectors.groupingBy(DonorDTO::getState, Collectors.counting()));
     }
@@ -104,5 +106,11 @@ public class DonorService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<Donor> salvarDonors(List<Donor> donors) {
+        return donorRepository.saveAll(donors);
+    }
+
 }
 
