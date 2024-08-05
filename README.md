@@ -36,7 +36,7 @@ brew install maven
 ```
 - Baixe e instale o MySQL. Após a instalação, crie um banco de dados para o projeto.
 ```
-CREATE DATABASE blood-donors;
+CREATE DATABASE blood;
 ````
 ___
 
