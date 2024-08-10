@@ -37,35 +37,35 @@ public class DonorController {
     
     
     @PostMapping("/average-imc")
-    public ResponseEntity<Map<String, Double>> getAverageIMCByAgeRange(@RequestBody List<DonorDTO> donors) {
+    public ResponseEntity<Map<String, Double>> AverageIMCByAgeRange(@RequestBody List<DonorDTO> donors) {
         List<DonorDTO> validDonors = donorService.filterValidDonors(donors);
         Map<String, Double> averageIMC = donorService.averageIMCByAgeRange(validDonors);
         return ResponseEntity.ok(averageIMC);
     }
 
     @PostMapping("/obesity-percentage")
-    public ResponseEntity<Map<String, Double>> getObesityPercentage(@RequestBody List<DonorDTO> donors) {
+    public ResponseEntity<Map<String, Double>> obesityPercentage(@RequestBody List<DonorDTO> donors) {
         List<DonorDTO> validDonors = donorService.filterValidDonors(donors);
         Map<String, Double> obesityPercentage = donorService.calculateObesityPercentage(validDonors);
         return ResponseEntity.ok(obesityPercentage);
     }
 
     @PostMapping("/average-age-by-blood-type")
-    public ResponseEntity<Map<String, Double>> getAverageAgeByBloodType(@RequestBody List<DonorDTO> donors) {
+    public ResponseEntity<Map<String, Double>> averageAgeByBloodType(@RequestBody List<DonorDTO> donors) {
         List<DonorDTO> validDonors = donorService.filterValidDonors(donors);
         Map<String, Double> averageAgeByBloodType = donorService.averageAgeByBloodType(validDonors);
         return ResponseEntity.ok(averageAgeByBloodType);
     }
 
     @PostMapping("/possible-donors-by-blood-type")
-    public ResponseEntity<Map<String, Long>> getPossibleDonorsByBloodType(@RequestBody List<DonorDTO> donors) {
+    public ResponseEntity<Map<String, Long>> possibleDonorsByBloodType(@RequestBody List<DonorDTO> donors) {
         List<DonorDTO> validDonors = donorService.filterValidDonors(donors);
         Map<String, Long> possibleDonorsByBloodType = donorService.possibleDonorsByBloodType(validDonors);
         return ResponseEntity.ok(possibleDonorsByBloodType);
     }
     @PostMapping("/donors")
-    public ResponseEntity<List<Donor>> salvarDonors(@RequestBody List<Donor> donors) {
-        List<Donor> donorsSalvos = donorService.salvarDonors(donors);
+    public ResponseEntity<List<Donor>> saveDonors(@RequestBody List<Donor> donors) {
+        List<Donor> donorsSalvos = donorService.saveDonors(donors);
         return ResponseEntity.ok(donorsSalvos);
     }
 

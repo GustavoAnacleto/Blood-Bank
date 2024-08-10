@@ -25,6 +25,12 @@ public class DonorService {
         return donorRepository.findAll();
     }
 
+
+    public Map<String, Long> candidatesByState(List<DonorDTO> donors) {
+        return donors.stream()
+                .collect(Collectors.groupingBy(DonorDTO::getState, Collectors.counting()));
+    }
+
     public Map<String, Double> averageIMCByAgeRange(List<DonorDTO> donors) {
         return donors.stream()
                 .collect(Collectors.groupingBy(donor -> {
@@ -42,10 +48,6 @@ public class DonorService {
         return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
-    public Map<String, Long> candidatesByState(List<DonorDTO> donors) {
-        return donors.stream()
-                .collect(Collectors.groupingBy(DonorDTO::getState, Collectors.counting()));
-    }
     
     public Map<String, Double> calculateObesityPercentage(List<DonorDTO> donors) {
         long totalMen = donors.stream().filter(donor -> "M".equalsIgnoreCase(donor.getGender())).count();
@@ -108,7 +110,7 @@ public class DonorService {
     }
 
     @Transactional
-    public List<Donor> salvarDonors(List<Donor> donors) {
+    public List<Donor> saveDonors(List<Donor> donors) {
         return donorRepository.saveAll(donors);
     }
 
